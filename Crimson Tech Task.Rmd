@@ -1,0 +1,42 @@
+---
+title: "Linear Programming"
+output: html_notebook
+---
+
+Linear Programming is a method of depicting complex relationships through linear functions and then find the most efficient/useful points.<br>
+Basically in Linear Programming we can simplify complex solutions and derive linear relationships.<br>
+Some of the everyday scenario examples are:<br>
+<ol>
+<li>Finding shortest route to reach a destination.</li>
+<li>Dividing food between a certain number of people.</li>
+<li>Monitoring groceries in the kitchen.</li>
+<li>Appointing individuals for a particular task based on their efficiencies.</li>
+<li>Calculating time taken by several machines to complete a certain task as fast as possible.</li>
+</ol>
+<br>
+How to do Linear Programming:<br>
+The following are the steps:-<br>
+<ol>
+<li>Identify the variables which will affect our decision.</li>
+<li>Write the function which maximises/minimises the output.</li>
+<li>Mention the constraints.</li>
+<li>Solve the equation and thus obtain the conditions to gain maximum output.</li>
+</ol>
+If the decision variables, objective function and constraints are linear functions, then the problem is of linear programming.
+
+```{r}
+library(lpSolve)
+library(lpSolveAPI)
+
+func.con <- matrix(c(1,0,1,0,0,1,0,1,1,1), nrow = 5, byrow=TRUE)
+#Optimization function
+func.obj <- c(-2000,5000)
+#Equalities Direction
+func.dir <- c(">=","<=",">=","<=",">=")
+#RHS
+func.rhs <- c(100, 200, 80, 170, 200)
+#Result
+res<-lp ("max", func.obj, func.con, func.dir, func.rhs,compute.sens = TRUE)
+res$solution
+
+```
